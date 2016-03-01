@@ -11,7 +11,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth', :github => 'intridea/omniauth'
 gem 'omniauth-uber'
 gem 'oauth2'
-gem 'figaro'  
+gem 'figaro'
+gem 'faraday'
 # gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'byebug'
