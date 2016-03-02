@@ -14,6 +14,7 @@ gem 'omniauth-uber'
 gem 'figaro'
 gem 'faraday'
 gem 'rspec'
+gem 'geocoder'
 # gem 'bcrypt', '~> 3.1.7'
 
 group :production do
