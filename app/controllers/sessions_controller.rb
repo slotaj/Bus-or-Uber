@@ -4,7 +4,6 @@ require 'uri'
 class SessionsController < ApplicationController
 
   def create
-    # if user = User.from_omniauth(request.env)
     if user = User.from_omniauth(request.env)
       session[:user_id] = user.id
       redirect_to dashboard_path
