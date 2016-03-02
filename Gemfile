@@ -13,6 +13,7 @@ gem 'omniauth-uber'
 # gem 'oauth2'
 gem 'figaro'
 gem 'faraday'
+gem 'rails_12factor'
 # gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'byebug'
