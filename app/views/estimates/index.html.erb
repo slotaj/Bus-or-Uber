@@ -1,0 +1,66 @@
+<div class="container text-center">
+    <h1>Enter info to get ride estiamtes from Uber and Mass Transit options</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <%= form_for :estimates do |f| %>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= f.label :start_latitude %>
+        <%= f.text_field :start_latitude %>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= f.label :start_longitude %>
+        <%= f.text_field :start_longitude %>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= f.label :end_latitude %>
+        <%= f.text_field :end_latitude %>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= f.label :end_longitude %>
+        <%= f.text_field :end_longitude %>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= f.submit "Submit" %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <h1>Youe Ride Estimates</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td>Ride Type</td>
+              <td>Estimate Cost</td>
+              <td>Estimate Travel Time</td>
+              <td>Estimated Arrival Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uber</td>
+              <td>$13.00</td>
+              <td>12 miles</td>
+              <td>3 pm</td>
+              <td>button_to "Call an Uber"</td>
+            </tr>
+            <tr>
+              <td>Bus</td>
+              <td>$4.00</td>
+              <td>21 miles</td>
+              <td>4 pm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3>Bus Itinerary</h3>
+      <p>bus arrives at 3 pm at 4th and elati stree. take the 378 bus to colfax.  Take the 78 bus to main street.  do some other stuff</p>
+    </div>
+  </div>
+</div>
