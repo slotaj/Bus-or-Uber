@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/auth/uber/callback", to: "sessions#create"
 
   get 'dashboard', to: 'users#show'
+  get 'ride_estimate', to: 'estimates#index'
 end
