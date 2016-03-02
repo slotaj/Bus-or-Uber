@@ -1,0 +1,22 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+/* line 18, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+body.welcome {
+  background: url("http://a.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/09/3035870-poster-p-1-this-chaotic-rush-hour-intersection-is-a-masterpiece-of-video-editing.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
