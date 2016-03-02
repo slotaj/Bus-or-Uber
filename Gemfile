@@ -14,12 +14,26 @@ gem 'omniauth-uber'
 gem 'figaro'
 gem 'faraday'
 gem 'rails_12factor'
+gem 'rspec'
 # gem 'bcrypt', '~> 3.1.7'
+
 group :development, :test do
   gem 'byebug'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', :require => false
+  gem 'database_cleaner'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'webmock'
+  gem 'vcr'
 end
