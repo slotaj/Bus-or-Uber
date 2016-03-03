@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
-    # byebug
     user = User.find_or_create_by(uid: auth['omniauth.auth'][:uid])
     user.uid           = auth['omniauth.auth'][:uid]
     user.email         = auth['omniauth.auth']['info']['email']
