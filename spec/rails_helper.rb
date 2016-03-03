@@ -18,19 +18,17 @@ SimpleCov.start "rails"
 ActiveRecord::Migration.maintain_test_schema!
 
 OmniAuth.config.test_mode = true
-OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({
-    provider: 'instagram',
-    uid: "224650346",
+OmniAuth.config.mock_auth[:uber] = OmniAuth::AuthHash.new({
+    provider: 'uber',
+    uid: "b7e43c5b-aa83-49fe-8832-9ea85703740a",
     info: {
-      name: "Justin Pease",
-      nickname: "justinpease1",
+      first_name: "Justin",
+      last_name: "Pease",
       email: 'justinpease2@gmail.com',
-      image_url: "https://scontent.cdninstagram.com/t51.2885-19/s150x150/12748419_1752098388353622_1993632129_a.jpg",
-      bio: "I love testing APIs",
-      website: ""
+      picture: "",
     },
     credentials: {
-      token: ENV['test_instagram_token']
+      token: ENV['uber_test_user_token']
     }
   })
 
