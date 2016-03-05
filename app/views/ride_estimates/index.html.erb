@@ -1,0 +1,94 @@
+<div class="container text-center">
+    <h1>Enter info to get ride estimates from Uber and Mass Transit options</h1>
+</div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12" id='ride-info-input'>
+      <div class="row">
+        <%= form_for :estimates, url: ride_estimates_path do |f| %>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <%= f.label :origin, "Origin" %>
+          <%= f.text_field :origin %>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <%= f.label :destination, "Destination" %>
+          <%= f.text_field :destination %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <%= f.submit "get ride estimates"%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <h1>Uber Estimates</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Ride Type</td>
+            <td>Estimate Cost</td>
+            <td>Estimate Travel Time</td>
+            <td>Estimated Arrival Time</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uber</td>
+            <td>$13.00</td>
+            <td>12 miles</td>
+            <td>3 pm</td>
+            <td>button_to "Call an Uber"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <h1>Bus Estimates</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Ride Type</td>
+            <td>Estimate Cost</td>
+            <td>Departure Time</td>
+            <td>Estimated Arrival Time</td>
+            <td>Travel Time</td>
+            <td>Travel Distance</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RTD Bus</td>
+            <td>$?????</td>
+            <td><%= @google_directions.departure_time %></td>
+            <td><%= @google_directions.arrival_time %></td>
+            <td><%= @google_directions.duration %></td>
+            <td><%= @google_directions.distance %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h3>Bus Itinerary</h3>
+      <% if @google_directions %>
+      <p>Origin: <%= @google_directions.start_address %></p>
+      <p>Destination: <%= @google_directions.end_address %></p>
+      <p>Steps: </p>
+        <% @google_directions.steps.each do |step|%>
+          <p><%= step.html_instructions %></p>
+          <% if step.steps %>
+            <% step.steps.each do |step| %>
+              <p><%= step['travel_mode'] %>: Go <%= step['distance']['text'] %> for <%= step['duration']['text'] %> <%= step['html_instructions'] %> <%= %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
