@@ -5,6 +5,6 @@ RSpec.describe "user visits root path", type: :feature do
     visit '/'
     click_on 'Log in with Uber'
 
-    expect(current_path).to eq(ride_estimate_path)
+    expect(current_path).to eq(ride_estimates_path)
   end
 end
