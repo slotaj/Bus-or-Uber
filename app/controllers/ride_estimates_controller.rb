@@ -6,6 +6,7 @@ class RideEstimatesController < ApplicationController
   end
 
   def create
+    byebug
     google_estimate = GoogleEstimate.create(estimates_params[:origin],
                                                  estimates_params[:destination])
     start_lat  = google_estimate.estimate_info['start_location']['lat']

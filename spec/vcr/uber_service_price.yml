@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 06 Mar 2016 22:25:05 GMT
+      - Sun, 06 Mar 2016 22:53:06 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Rate-Limit-Remaining:
-      - '1999'
+      - '1998'
       Content-Language:
       - en
       Content-Geo-System:
@@ -48,5 +48,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"prices":[{"localized_display_name":"uberX","high_estimate":9,"minimum":5,"duration":720,"estimate":"$7-9","distance":3.33,"display_name":"uberX","product_id":"b746437e-eab6-44ca-8079-25dfd6f861ab","low_estimate":7,"surge_multiplier":1.0,"currency_code":"USD"},{"localized_display_name":"uberXL","high_estimate":17,"minimum":8,"duration":720,"estimate":"$13-17","distance":3.33,"display_name":"uberXL","product_id":"1c2d6363-0b64-45ad-b749-a539b186f376","low_estimate":13,"surge_multiplier":1.0,"currency_code":"USD"},{"localized_display_name":"uberSELECT","high_estimate":18,"minimum":11,"duration":720,"estimate":"$14-18","distance":3.33,"display_name":"uberSELECT","product_id":"54368029-1d2f-4864-80a7-eb79703cb3af","low_estimate":14,"surge_multiplier":1.0,"currency_code":"USD"},{"localized_display_name":"UberBLACK","high_estimate":25,"minimum":15,"duration":720,"estimate":"$20-25","distance":3.33,"display_name":"UberBLACK","product_id":"53641edd-8142-4491-8f83-3c366fecd276","low_estimate":20,"surge_multiplier":1.0,"currency_code":"USD"},{"localized_display_name":"UberSUV","high_estimate":35,"minimum":25,"duration":720,"estimate":"$29-35","distance":3.33,"display_name":"UberSUV","product_id":"a79464c3-1aec-492b-95fd-c1e96f32ec83","low_estimate":29,"surge_multiplier":1.0,"currency_code":"USD"}]}'
     http_version: 
-  recorded_at: Sun, 06 Mar 2016 22:25:05 GMT
+  recorded_at: Sun, 06 Mar 2016 22:53:06 GMT
 recorded_with: VCR 3.0.1
