@@ -9,16 +9,33 @@ class UberService
     end
   end
 
-  def price_estimate(input)
-    # response = connection.get do |req|                           # GET http://sushi.com/search?page=2&limit=100
-  #   req.url '/v1/estimates/price/'
-    #   req.params['start_latitude'] =
-    #   req.params['start_longitude'] =
-    #   req.params['end_latitude'] =
-    #   req.params['end_longitude'] =
-    # end
-
+  def time_estimate(start_long_and_lat, end_long_and_lat)
+    response = connection.get do |req|
+      req.url '/v1/estimates/time'
+      req.headers['Authorization'] = ENV['uber_server_token']
+      # Authorization: Bearer YOUR_ACCESS_TOKEN
+      req.params['start_latitude']  = start_long_and_lat['lat']
+      req.params['start_longitude'] = start_long_and_lat['lng']
+      req.params['end_latitude']    = end_long_and_lat['lat']
+      req.params['end_longitude']   = end_long_and_lat['lng']
+    end
   end
+
+# https://api.uber.com/v1/estimates/price?start_latitude=39.7223747&start_longitude=-104.9939991&end_latitude=39.7579206&end_longitude=-104.9935264&server_token=cH2wK_7jEDRe4IaKgO7wFD1v_YyQlMF7uqJpW_sW
+# https://api.uber.com/v1/estimates/price/?end_latitude=39.7579206&end_longitude=-104.9935264&start_latitude=39.7223747&start_longitude=-104.9939991
+
+
+  def price_estimate(start_long_and_lat, end_long_and_lat)
+    response = connection.get do |req|
+      req.url '/v1/estimates/price'
+      req.params['server_token']    = ENV['uber_server_token']
+      req.params['start_latitude']  = start_long_and_lat['lat']
+      req.params['start_longitude'] = start_long_and_lat['lng']
+      req.params['end_latitude']    = end_long_and_lat['lat']
+      req.params['end_longitude']   = end_long_and_lat['lng']
+    end
+  end
+
 end
 
 

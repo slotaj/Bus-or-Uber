@@ -1,23 +1,23 @@
-class GoogleDirections
+class Estimate
   attr_reader :directions_info, :warning, :status
 
-  def initialize(directions_hash)
-    @directions_info ||= directions_hash.routes[0]['legs'][0]
-    @warning ||= directions_hash.routes[0]['warning']
-    @status ||= directions_hash.status
+  def initialize(google_directions_hash, uber_directions_hash)
+    @directions_info ||= google_directions_hash.routes[0]['legs'][0]
+    @warning ||= google_directions_hash.routes[0]['warning']
+    @status ||= google_directions_hash.status
   end
 
   def self.create(origin, destination)
-    directions_hash = GoogleDirectionsService.new.full(origin, destination)
-    start_long_and_lat = directions_hash.routes.first['legs'].first['start_location']
-    end_long_and_lat = directions_hash.routes.first['legs'].first['end_location']
-
-    byebug
-    @directions = new(directions_hash)
+    google_directions_hash = GoogleDirectionsService.new.full(origin, destination)
+    start_long_and_lat = google_directions_hash.routes.first['legs'].first['start_location']
+    end_long_and_lat = google_directions_hash.routes.first['legs'].first['end_location']
+    uber_price_estimate = UberService.new.price_estimate(start_long_and_lat, end_long_and_lat)
+    # uber_time_estimate = UberServices.new.time_estimate(start_long_and_lat, end_long_and_lat)
+    @google_directions = new(google_directions_hash, uber_price_estimate)
   end
 
-  def self.directions
-    @directions
+  def self.google_directions
+    @google_directions
   end
 
   def departure_time
@@ -80,6 +80,3 @@ class GoogleDirections
     OpenStruct.new(data)
   end
 end
-
-  #     # a_time_zone      = directions_hash["arrival_time"]['time_zone']  ????????? include this?????
-  #     # d_time_zone      = directions_hash["departure_time"]['time_zone']  ????????? include this?????

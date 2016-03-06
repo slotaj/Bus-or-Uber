@@ -63,10 +63,12 @@
           <tr>
             <td>RTD Bus</td>
             <td>$?????</td>
-            <td><%= @google_directions.departure_time %></td>
-            <td><%= @google_directions.arrival_time %></td>
-            <td><%= @google_directions.duration %></td>
-            <td><%= @google_directions.distance %></td>
+            <% if @google_directions %>
+              <td><%= @google_directions.departure_time %></td>
+              <td><%= @google_directions.arrival_time %></td>
+              <td><%= @google_directions.duration %></td>
+              <td><%= @google_directions.distance %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>

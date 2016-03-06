@@ -1,3 +1,0 @@
-class Estimates
-  
-end
