@@ -31,8 +31,6 @@ class GoogleEstimateService
   end
 end
 
-
-
 #?????????? try using more than one transit mode to get bus and train ???????????
 # transit_mode — Specifies one or more preferred modes of transit. This parameter may only be specified for transit estimate, and only if the request includes an API key or a Google Maps APIs Premium Plan client ID. The parameter supports the following arguments:
 # bus indicates that the calculated route should prefer travel by bus.
