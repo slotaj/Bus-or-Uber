@@ -4,26 +4,43 @@ class UberService
 
   def initialize
     @connection = Faraday.new(:url => 'https://api.uber.com') do |faraday|
-      faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      faraday.response :logger
+      faraday.adapter  Faraday.default_adapter
     end
   end
 
-  def price_estimate(input)
-    # response = connection.get do |req|                           # GET http://sushi.com/search?page=2&limit=100
-  #   req.url '/v1/estimates/price/'
-    #   req.params['start_latitude'] =
-    #   req.params['start_longitude'] =
-    #   req.params['end_latitude'] =
-    #   req.params['end_longitude'] =
-    # end
-
+  def time_estimate(start_lat, start_lng, end_lat, end_lng)
+    response = connection.get do |req|
+      req.url '/v1/estimates/time'
+      req.params['server_token']    = ENV['uber_server_token']
+      req.params['start_latitude']  = start_lat
+      req.params['start_longitude'] = start_lng
+      req.params['end_latitude']    = end_lat
+      req.params['end_longitude']   = end_lng
+    end
+    build_object(response.body)
   end
+
+  def price_estimate(start_lat, start_lng, end_lat, end_lng)
+    response = connection.get do |req|
+      req.url '/v1/estimates/price'
+      req.params['server_token']    = ENV['uber_server_token']
+      req.params['start_latitude']  = start_lat
+      req.params['start_longitude'] = start_lng
+      req.params['end_latitude']    = end_lat
+      req.params['end_longitude']   = end_lng
+    end
+    build_object(parse(response))
+  end
+
+  private
+
+  def parse(response)
+    JSON.parse(response.body)
+  end
+
+  def build_object(data)
+    OpenStruct.new(data)
+  end
+
 end
-
-
-
-# start_latitude	float	Latitude component of start location.
-# start_longitude	float	Longitude component of start location.
-# end_latitude	float	Latitude component of end location.
-# end_longitude	float	Longitude component of end location.
