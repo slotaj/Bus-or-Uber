@@ -63,11 +63,11 @@
           <tr>
             <td>RTD Bus</td>
             <td>$?????</td>
-            <% if @google_directions %>
-              <td><%= @google_directions.departure_time %></td>
-              <td><%= @google_directions.arrival_time %></td>
-              <td><%= @google_directions.duration %></td>
-              <td><%= @google_directions.distance %></td>
+            <% if @google_estimate %>
+              <td><%= @google_estimate.departure_time %></td>
+              <td><%= @google_estimate.arrival_time %></td>
+              <td><%= @google_estimate.duration %></td>
+              <td><%= @google_estimate.distance %></td>
             <% end %>
           </tr>
         </tbody>
@@ -78,11 +78,11 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
       <h3>Bus Itinerary</h3>
-      <% if @google_directions %>
-      <p>Origin: <%= @google_directions.start_address %></p>
-      <p>Destination: <%= @google_directions.end_address %></p>
+      <% if @google_estimate %>
+      <p>Origin: <%= @google_estimate.start_address %></p>
+      <p>Destination: <%= @google_estimate.end_address %></p>
       <p>Steps: </p>
-        <% @google_directions.steps.each do |step|%>
+        <% @google_estimate.steps.each do |step|%>
           <p><%= step.html_instructions %></p>
           <% if step.steps %>
             <% step.steps.each do |step| %>

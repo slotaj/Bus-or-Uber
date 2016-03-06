@@ -1,7 +1,10 @@
 class RideEstimatesController < ApplicationController
 
   def index
-    @google_directions = Estimate.google_directions
+    # @google_directions = GoogleEstimate.estimate
+    # @uber_directions = UberEstimate.estimate
+    @google_estimate = Estimate.get_google_estimate
+
   end
 
   def create
@@ -9,7 +12,7 @@ class RideEstimatesController < ApplicationController
     #                                              estimates_params[:destination])
     # redirect_to action: 'index'
 
-    @google_directions = Estimate.create(estimates_params[:origin],
+    @google_estimate = Estimate.create(estimates_params[:origin],
                                                  estimates_params[:destination])
     redirect_to action: 'index'
   end

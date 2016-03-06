@@ -1,4 +1,4 @@
-class GoogleDirections
+class GoogleEstimate
   attr_reader :directions_info, :warning, :status
 
   def initialize(directions_hash)
@@ -7,18 +7,16 @@ class GoogleDirections
     @status ||= directions_hash.status
   end
 
-  def self.create(origin, destination)
+  def self.get_estimate(origin, destination)
     directions_hash = GoogleDirectionsService.new.full(origin, destination)
-    start_long_and_lat = directions_hash.routes.first['legs'].first['start_location']
-    end_long_and_lat = directions_hash.routes.first['legs'].first['end_location']
-
-    byebug
-    @directions = new(directions_hash)
+    # start_long_and_lat = directions_hash.routes.first['legs'].first['start_location']
+    # end_long_and_lat = directions_hash.routes.first['legs'].first['end_location']
+    new(directions_hash)
   end
 
-  def self.directions
-    @directions
-  end
+  # def self.directions
+  #   @directions
+  # end
 
   def departure_time
     directions_info['departure_time']['text']
