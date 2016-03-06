@@ -6,7 +6,7 @@ RSpec.describe "user gets ride estimes", type: :feature do
       visit '/'
       click_on 'Log in with Uber'
       expect(current_path).to eq(ride_estimates_path)
-      VCR.use_cassette("directions1") do
+      VCR.use_cassette("estimate1") do
         within('#ride-info-input') do
           fill_in("Origin", with: "1510 Blake Street, Denver Colorado 80202")
           fill_in("Destination", with: "Denver Zoo")
