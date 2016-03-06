@@ -11,6 +11,8 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require "simplecov"
 require 'factory_girl_rails'
+require 'webmock'
+
 
 SimpleCov.start "rails"
 
@@ -32,6 +34,11 @@ OmniAuth.config.mock_auth[:uber] = OmniAuth::AuthHash.new({
   })
 
 
+  VCR.configure do |c|
+    c.cassette_library_dir = "spec/vcr"
+    c.hook_into :webmock
+  end
+
   RSpec.configure do |config|
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.use_transactional_fixtures = true
@@ -41,11 +48,6 @@ OmniAuth.config.mock_auth[:uber] = OmniAuth::AuthHash.new({
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.clean_with(:truncation)
-    end
-
-    VCR.configure do |c|
-      c.cassette_library_dir = "spec/vcr"
-      c.hook_into :webmock
     end
 
     config.around(:each) do |example|
