@@ -3,13 +3,13 @@ class GoogleEstimate
 
   def initialize(estimate_hash)
     @estimate_info ||= estimate_hash.routes[0]['legs'][0]
-    @warning ||= estimate_hash.routes[0]['warning']
-    @status ||= estimate_hash.status
+    @warning       ||= estimate_hash.routes[0]['warning']
+    @status        ||= estimate_hash.status
   end
 
   def self.create(origin, destination)
     estimate_hash = GoogleEstimateService.new.full(origin, destination)
-    @estimate = new(estimate_hash)
+    @estimate     = new(estimate_hash)
   end
 
   def self.estimate
