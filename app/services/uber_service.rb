@@ -15,7 +15,12 @@ class UberService
   def get_estimate(start_lat, start_lng, end_lat, end_lng)
     time_estimate_response  = time_estimate(start_lat, start_lng)
     price_estimate_response = price_estimate(start_lat, start_lng, end_lat, end_lng)
-    price_estimate_response = price_estimate_response.prices.map.with_index do |price_estimate, i|
+
+    combine_and_format_responses(time_estimate_response, price_estimate_response)
+  end
+
+  def combine_and_format_responses(time_estimate_response, price_estimate_response)
+      price_estimate_response = price_estimate_response.prices.map.with_index do |price_estimate, i|
       trip_duration = time_estimate_response.times[i]['estimate']
       price_estimate['duration'] = distance_of_time_in_words(Time.now, Time.now + price_estimate['duration'])
       price_estimate.merge!('estimated_uber_arrival' => distance_of_time_in_words(Time.now, Time.now + trip_duration))
