@@ -1,6 +1,6 @@
-require 'action_view'
-
-include ActionView::Helpers::DateHelper
+# require 'action_view'
+#
+# include ActionView::Helpers::DateHelper
 class UberService
 
   attr_reader :connection
@@ -22,8 +22,8 @@ class UberService
   def combine_and_format_responses(time_estimate_response, price_estimate_response)
     price_estimate_response = price_estimate_response.prices.map.with_index do |price_estimate, i|
       trip_duration = time_estimate_response.times[i]['estimate']
-      price_estimate['duration'] = distance_of_time_in_words(Time.now, Time.now + price_estimate['duration'])
-      price_estimate.merge!('estimated_uber_arrival' => distance_of_time_in_words(Time.now, Time.now + trip_duration))
+      price_estimate['duration'] = price_estimate['duration'] / 60
+      price_estimate.merge!('estimated_uber_arrival' => trip_duration / 60)
       build_object(price_estimate)
     end
   end
