@@ -52,25 +52,9 @@ class GoogleEstimate
     end
   end
 
-  def end_location_lat
-    estimate_info['end_location']['lat'] #send to Uber
-  end
-
-  def start_location_lat
-    estimate_info['start_location']['lat'] #send to Uber
-  end
-
-  def start_location_lng
-    estimate_info['start_location']['lng'] #send to Uber
-  end
-
-  def end_location_lng
-    estimate_info['end_location']['lng'] #send to Uber
-  end
-end
-
   private
 
   def build_object(data)
     OpenStruct.new(data)
   end
+end

@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'users#show'
 
+  resources :user_trips, only: [:create, :index]
   resources :ride_estimates, only: [:create, :index]
 end

@@ -31,7 +31,7 @@
       <div class="col-sm-8 col-md-8 col-lg-8">
         <div class="row">
           <h1>Bus Estimates</h1>
-          <table class="table table-hover">
+          <table class="table table-hover" id='bus-trips'>
             <thead>
               <tr>
                 <td>Ride Type</td>
@@ -42,16 +42,24 @@
                 <td>Travel Distance</td>
               </tr>
             </thead>
+            <% if @google_estimate %>
             <tbody>
-              <tr>
+              <tr id='bus-estimate-id'>
                 <td>RTD Bus</td>
                 <td>$?????</td>
-                <% if @google_estimate %>
-                  <td><%= @google_estimate.departure_time %></td>
-                  <td><%= @google_estimate.arrival_time %></td>
-                  <td><%= @google_estimate.duration %></td>
-                  <td><%= @google_estimate.distance %></td>
-                  <td><%= button_to "Take trip / Save info", '#'%></td>
+                <td><%= @google_estimate.departure_time %></td>
+                <td><%= @google_estimate.arrival_time %></td>
+                <td><%= @google_estimate.duration %></td>
+                <td><%= @google_estimate.distance %></td>
+                <td><button type="button" class="btn btn-primary btn-sm">
+                <%= button_to "Take trip / Save info",
+                              {controller: 'user_trips',
+                                   action: 'create',
+                           user_trip_info: { trip_type: "bus",
+                                        price_estimate: "$",
+                                              duration: @google_estimate.duration,
+                                              distance: @google_estimate.distance,
+                                            }}, class: "btn btn-primary btn-sm" %></button></td>
                 <% end %>
               </tr>
             </tbody>
@@ -64,8 +72,8 @@
               <tr>
                 <td>Uber Ride Type</td>
                 <td>Estimate Cost</td>
+                <td>Estimated Uber Arrival</td>
                 <td>Estimate Travel Time</td>
-                <td>Estimated Arrival Time</td>
                 <td>Travel Distance</td>
                 <td>High Estimate</td>
                 <td>Low Estimate</td>
@@ -73,18 +81,28 @@
               </tr>
             </thead>
             <% if @uber_estimate %>
-            <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
+              <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
                 <tbody>
-                  <tr>
+                  <tr id="<%=uber_estimate.localized_display_name%>-estimate-id" >
                     <td><%= uber_estimate.localized_display_name %></td>
                     <td><%= uber_estimate.estimate %></td>
-                    <td><%= uber_estimate.duration %></td>
                     <td><%= uber_estimate.estimated_uber_arrival %></td>
+                    <td><%= uber_estimate.duration %></td>
                     <td><%= uber_estimate.distance %></td>
                     <td><%= uber_estimate.high_estimate %></td>
                     <td><%= uber_estimate.low_estimate %></td>
                     <td><%= uber_estimate.minimum %></td>
-                    <td><%= button_to "Take trip / Save info", '#'%></td>
+                    <td><button type="button" class="btn btn-default">
+                    <%= button_to "Take trip / Save info",
+                                  {controller: 'user_trips',
+                                       action: 'create',
+                                    user_trip_info: { trip_type: uber_estimate.localized_display_name,
+                                                 price_estimate: uber_estimate.estimate,
+                                                       duration: uber_estimate.duration,
+                                                       distance: uber_estimate.distance,
+                                                  high_estimate: uber_estimate.high_estimate,
+                                                   low_estimate: uber_estimate.low_estimate
+                                                }}, class: "btn btn-primary btn-sm" %></button></td>
                   </tr>
                 </tbody>
               <% end %>
