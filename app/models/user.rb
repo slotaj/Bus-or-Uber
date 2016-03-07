@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :user_trips
 
   def self.from_omniauth(auth)
     user = User.find_or_create_by(uid: auth['omniauth.auth'][:uid])

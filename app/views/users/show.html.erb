@@ -3,22 +3,27 @@
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Uber Trips</h1>
       <table class="table table-hover">
-        <thead class="thead-default">
-          <tr>
-            <td>Distance Traveled</td>
-            <td>Day/Time</td>
-            <td>Travel Time</td>
-            <td>Trip Cost</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>12.4 Miles</td>
-            <td>1/22/16 12:30 pm</td>
-            <td>14 minutes</td>
-            <td>$7.30</td>
-          </tr>
-        </tbody>
+        <% @uber_trips.each do |trip| if @uber_trips %>
+          <thead class="thead-default">
+            <tr>
+              <td>Uber Car</td>
+              <td>Trip Cost</td>
+              <td>Day/Time</td>
+              <td>Travel Time</td>
+              <td>Distance Traveled</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= trip.trip_type %></td>
+              <td><%= trip.cost %></td>
+              <td><%= trip.created_at %></td>
+              <td><%= trip.duration %></td>
+              <td><%= trip.distance %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        <% end %>
       </table>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
@@ -53,22 +58,25 @@
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Bus Trips</h1>
       <table class="table table-hover">
-        <thead class="thead-default">
-          <tr>
-            <td>Distance Traveled</td>
-            <td>Day/Time</td>
-            <td>Travel Time</td>
-            <td>Trip Cost</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>12.4 Miles</td>
-            <td>1/23/16 4:30 pm</td>
-            <td>37 minutes</td>
-            <td>$2.50</td>
-          </tr>
-        </tbody>
+        <% @bus_trips.each do |trip| if @bus_trips %>
+          <thead class="thead-default">
+            <tr>
+              <td>Day/Time</td>
+              <td>Distance Traveled</td>
+              <td>Travel Time</td>
+              <td>Trip Cost</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= trip.created_at %></td>
+              <td><%= trip.distance %></td>
+              <td><%= trip.duration %></td>
+              <td><%= trip.cost %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        <% end %>
       </table>
     </div>
   </div>

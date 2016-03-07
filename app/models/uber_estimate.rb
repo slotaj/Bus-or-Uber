@@ -18,10 +18,4 @@ class UberEstimate
     @info
   end
 
-  private
-
-
-  def build_object(data)
-    OpenStruct.new(data)
-  end
 end

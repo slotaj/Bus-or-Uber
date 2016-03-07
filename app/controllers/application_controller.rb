@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
-  def logged_out?
-    session[:user_id] == nil
-  end
+  # def logged_out?
+  #   session[:user_id] == nil
+  # end
 end

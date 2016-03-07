@@ -1,107 +1,131 @@
 <div class="container text-center">
     <h1>Enter info to get ride estimates from Uber and Mass Transit options</h1>
 </div>
-<div class="container-fluid text-center">
-  <div class="row">
+<div class="container-fluid">
+  <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12" id='ride-info-input'>
       <div class="row">
         <%= form_for :estimates, url: ride_estimates_path do |f| %>
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
           <%= f.label :origin, "Origin" %>
           <%= f.text_field :origin %>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-2 col-md-2 col-lg-2">
           <%= f.label :destination, "Destination" %>
           <%= f.text_field :destination %>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="col-sm-2 col-md-2 col-lg-2">
           <%= f.submit "get ride estimates"%>
         </div>
       </div>
       <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6 col-md-6 col-lg-6">
-      <h1>Uber Estimates</h1>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <td>Uber Ride Type</td>
-            <td>Estimate Cost</td>
-            <td>Estimate Travel Time</td>
-            <td>Estimated Arrival Time</td>
-            <td>Travel Distance</td>
-            <td>High Estimate</td>
-            <td>Low Estimate</td>
-            <td>Minimum Cost</td>
-          </tr>
-        </thead>
-        <% if @uber_estimate %>
-        <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
-            <tbody>
-              <tr>
-                <td><%= uber_estimate.localized_display_name %></td>
-                <td><%= uber_estimate.estimate %></td>
-                <td><%= uber_estimate.duration %></td>
-                <td><%= uber_estimate.estimated_uber_arrival %></td>
-                <td><%= uber_estimate.distance %></td>
-                <td><%= uber_estimate.high_estimate %></td>
-                <td><%= uber_estimate.low_estimate %></td>
-                <td><%= uber_estimate.minimum %></td>
-              </tr>
-            </tbody>
-          <% end %>
-        <% end %>
-      </table>
-    </div>
-    <div class="col-sm-6 col-md-6 col-lg-6">
-      <h1>Bus Estimates</h1>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <td>Ride Type</td>
-            <td>Estimate Cost</td>
-            <td>Departure Time</td>
-            <td>Estimated Arrival Time</td>
-            <td>Travel Time</td>
-            <td>Travel Distance</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>RTD Bus</td>
-            <td>$?????</td>
-            <% if @google_estimate %>
-              <td><%= @google_estimate.departure_time %></td>
-              <td><%= @google_estimate.arrival_time %></td>
-              <td><%= @google_estimate.duration %></td>
-              <td><%= @google_estimate.distance %></td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-      <h3>Bus Itinerary</h3>
-      <% if @google_estimate %>
-      <p>Origin: <%= @google_estimate.start_address %></p>
-      <p>Destination: <%= @google_estimate.end_address %></p>
-      <p>Steps: </p>
-        <% @google_estimate.steps.each do |step|%>
-          <p><%= step.html_instructions %></p>
-          <% if step.steps %>
-            <% step.steps.each do |step| %>
-              <p><%= step['travel_mode'] %>: Go <%= step['distance']['text'] %> for <%= step['duration']['text'] %> <%= step['html_instructions'] %> <%= %></p>
+      <div class="col-sm-8 col-md-8 col-lg-8">
+        <div class="row">
+          <h1>Bus Estimates</h1>
+          <table class="table table-hover" id='bus-trips'>
+            <thead>
+              <tr>
+                <td>Ride Type</td>
+                <td>Estimate Cost</td>
+                <td>Departure Time</td>
+                <td>Estimated Arrival Time</td>
+                <td>Travel Time</td>
+                <td>Travel Distance</td>
+              </tr>
+            </thead>
+            <% if @google_estimate %>
+            <tbody>
+              <tr id='bus-estimate-id'>
+                <td>RTD Bus</td>
+                <td>$?????</td>
+                <td><%= @google_estimate.departure_time %></td>
+                <td><%= @google_estimate.arrival_time %></td>
+                <td><%= @google_estimate.duration %></td>
+                <td><%= @google_estimate.distance %></td>
+                <td><button type="button" class="btn btn-primary btn-sm">
+                <%= button_to "Take trip / Save info",
+                              {controller: 'user_trips',
+                                   action: 'create',
+                           user_trip_info: { trip_type: "bus",
+                                        price_estimate: "$",
+                                              duration: @google_estimate.duration,
+                                              distance: @google_estimate.distance,
+                                            }}, class: "btn btn-primary btn-sm" %></button></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <h1>Uber Estimates</h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td>Uber Ride Type</td>
+                <td>Estimate Cost</td>
+                <td>Estimated Uber Arrival</td>
+                <td>Estimate Travel Time</td>
+                <td>Travel Distance</td>
+                <td>High Estimate</td>
+                <td>Low Estimate</td>
+                <td>Minimum Cost</td>
+              </tr>
+            </thead>
+            <% if @uber_estimate %>
+              <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
+                <tbody>
+                  <tr id="<%=uber_estimate.localized_display_name%>-estimate-id" >
+                    <td><%= uber_estimate.localized_display_name %></td>
+                    <td><%= uber_estimate.estimate %></td>
+                    <td><%= uber_estimate.estimated_uber_arrival %></td>
+                    <td><%= uber_estimate.duration %></td>
+                    <td><%= uber_estimate.distance %></td>
+                    <td><%= uber_estimate.high_estimate %></td>
+                    <td><%= uber_estimate.low_estimate %></td>
+                    <td><%= uber_estimate.minimum %></td>
+                    <td><button type="button" class="btn btn-default">
+                    <%= button_to "Take trip / Save info",
+                                  {controller: 'user_trips',
+                                       action: 'create',
+                                    user_trip_info: { trip_type: uber_estimate.localized_display_name,
+                                                 price_estimate: uber_estimate.estimate,
+                                                       duration: uber_estimate.duration,
+                                                       distance: uber_estimate.distance,
+                                                  high_estimate: uber_estimate.high_estimate,
+                                                   low_estimate: uber_estimate.low_estimate
+                                                }}, class: "btn btn-primary btn-sm" %></button></td>
+                  </tr>
+                </tbody>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <h3>Bus Itinerary</h3>
+        <% if @google_estimate %>
+        <p>Origin: <%= @google_estimate.start_address %></p>
+        <p>Destination: <%= @google_estimate.end_address %></p>
+        <p>Steps: </p>
+          <% @google_estimate.steps.each do |step|%>
+            <p><%= step.html_instructions %></p>
+            <% if step.steps %>
+              <% step.steps.each do |step| %>
+                <p><%= step['travel_mode'] %>: Go <%= step['distance']['text'] %> for <%= step['duration']['text'] %> <%= step['html_instructions'] %> <%= %></p>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
