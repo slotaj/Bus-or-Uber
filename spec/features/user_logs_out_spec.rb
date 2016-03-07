@@ -7,6 +7,5 @@ RSpec.describe "user visits root path, logs in", type: :feature do
     click_on 'logout'
 
     expect(current_path).to eq(root_path)
-    refute current_user.logged_in?
   end
 end
