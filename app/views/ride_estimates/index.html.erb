@@ -49,8 +49,8 @@
                 <td>$?????</td>
                 <td><%= @google_estimate.departure_time %></td>
                 <td><%= @google_estimate.arrival_time %></td>
-                <td><%= @google_estimate.duration %></td>
-                <td><%= @google_estimate.distance %></td>
+                <td><%= @google_estimate.duration %> minutes</td>
+                <td><%= @google_estimate.distance %> miles</td>
                 <td><button type="button" class="btn btn-primary btn-sm">
                 <%= button_to "Take trip / Save info",
                               {controller: 'user_trips',
@@ -87,8 +87,8 @@
                     <td><%= uber_estimate.localized_display_name %></td>
                     <td><%= uber_estimate.estimate %></td>
                     <td><%= uber_estimate.estimated_uber_arrival %></td>
-                    <td><%= uber_estimate.duration %></td>
-                    <td><%= uber_estimate.distance %></td>
+                    <td><%= uber_estimate.duration %> minutes</td>
+                    <td><%= uber_estimate.distance %> miles</td>
                     <td><%= uber_estimate.high_estimate %></td>
                     <td><%= uber_estimate.low_estimate %></td>
                     <td><%= uber_estimate.minimum %></td>

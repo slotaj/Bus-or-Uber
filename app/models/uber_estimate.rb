@@ -1,6 +1,3 @@
-require 'action_view'
-
-include ActionView::Helpers::DateHelper
 class UberEstimate
 
   attr_reader :ride_estimates
