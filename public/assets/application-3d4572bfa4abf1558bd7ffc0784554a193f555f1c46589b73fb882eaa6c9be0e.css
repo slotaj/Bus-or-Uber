@@ -15,7 +15,7 @@
  */
 /* line 18, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
 body.welcome {
-  background: url("http://a.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/09/3035870-poster-p-1-this-chaotic-rush-hour-intersection-is-a-masterpiece-of-video-editing.gif");
+  background-image: url(/assets/nice-shot-a425cbd9de8cdb7577f06312b8784b9aa526a99a367cc7169907ffcab05cb60b.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
