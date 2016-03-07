@@ -3,7 +3,6 @@
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Uber Trips</h1>
       <table class="table table-hover">
-        <% @uber_trips.each do |trip| if @uber_trips %>
           <thead class="thead-default">
             <tr>
               <td>Uber Car</td>
@@ -14,7 +13,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <% @uber_trips.each do |trip| if @uber_trips %>
+            <tr id="uber-trip">
               <td><%= trip.trip_type %></td>
               <td><%= trip.cost %></td>
               <td><%= trip.created_at %></td>
@@ -58,7 +58,6 @@
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Bus Trips</h1>
       <table class="table table-hover">
-        <% @bus_trips.each do |trip| if @bus_trips %>
           <thead class="thead-default">
             <tr>
               <td>Day/Time</td>
@@ -67,8 +66,9 @@
               <td>Trip Cost</td>
             </tr>
           </thead>
+          <% @bus_trips.each do |trip| if @bus_trips %>
           <tbody>
-            <tr>
+            <tr id="bus-trip">
               <td><%= trip.created_at %></td>
               <td><%= trip.distance %></td>
               <td><%= trip.duration %></td>
