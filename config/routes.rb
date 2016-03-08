@@ -10,4 +10,10 @@ Rails.application.routes.draw do
 
   resources :user_trips, only: [:create, :index]
   resources :ride_estimates, only: [:create, :index]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :estimates, only: [:index]
+    end
+  end
 end

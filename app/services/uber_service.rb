@@ -1,6 +1,4 @@
-# require 'action_view'
-#
-# include ActionView::Helpers::DateHelper
+
 class UberService
 
   attr_reader :connection

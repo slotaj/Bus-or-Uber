@@ -5,22 +5,22 @@
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12" id='ride-info-input'>
       <div class="row">
-        <%= form_for :estimates, url: ride_estimates_path do |f| %>
-        <div class="col-sm-3 col-md-3 col-lg-3">
+        <%= form_for :estimates, url: api_v1_estimates_path, method: :get, id: 'get-estimate-button', remote: true do |f| %>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.label :origin, "Origin" %>
+            <%= f.text_field :origin %>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.label :destination, "Destination" %>
+            <%= f.text_field :destination %>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.submit "get ride estimates"%>
+          </div>
         </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.label :origin, "Origin" %>
-          <%= f.text_field :origin %>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.label :destination, "Destination" %>
-          <%= f.text_field :destination %>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.submit "get ride estimates"%>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
       <div class="col-sm-3 col-md-3 col-lg-3">
       </div>
     </div>
