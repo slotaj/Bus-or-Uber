@@ -20,3 +20,19 @@ body.welcome {
   background-size: cover;
   background-attachment: fixed;
 }
+
+/* line 25, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+#welcome-text {
+  margin-top: 65px;
+  color: white;
+}
+
+/* line 30, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+.navbar.navbar-default {
+  background-color: #100000;
+}
+
+/* line 34, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+#get-ride-submit {
+  margin-top: 22px;
+}
