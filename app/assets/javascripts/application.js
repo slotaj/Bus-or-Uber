@@ -13,10 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-// $(document).ready(function(){
-//     $('form#get-estimate-button').bind("ajax:success", function(evt, data, status, xhr){
-//     console.log(response)
-//   }).bind("ajax:error", function() {
-//     console.log("ajax:error")
-//   })
-// });
