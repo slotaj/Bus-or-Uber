@@ -16,8 +16,8 @@ function googleEstimate(response){
     "<td>Moneys</td>" +
     "<td id='departure_time'>" + data.departure_time.text + "</td>" +
     "<td id=''>" + data.arrival_time.text + "</td>" +
-    "<td>" + data.duration.text + " minutes </td>" +
-    "<td>" + data.distance.text + "miles </td>" +
+    "<td>" + data.duration.text + "</td>" +
+    "<td>" + data.distance.text + "</td>" +
     "<td>" + "<button type='button' class='btn btn-primary btn-sm' id='bus-trip-id'>" +
     "Take trip / Save info" +
               //     {controller: 'user_trips',
