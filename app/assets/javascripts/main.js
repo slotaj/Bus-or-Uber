@@ -1,29 +1,28 @@
 $(document).ready(function(){
-  // googleEstimate(response);
-  // uberEstimate(response);
   bindEvents()
 });
 
 function bindEvents(){
   $('#get-estimate-button').on('click', function(){
-    var orignInput = $('#origin-input').val()
-    var destinationInput = $('#destination-input').val()
-    getGoogleEstimate(orignInput, destinationInput)
-    // retrive the from values to send as params
-    // trigger an ajax call to the estimates controller
-    // on success, get the data, pass the data to the googleEstimate function
-    // on success, get the data, pass the data to the uberEstimate function
-    // response.googleEstimate
-    debugger
+    var orignInput = $('#origin-input').val();
+    var destinationInput = $('#destination-input').val();
+    getEstimates(orignInput, destinationInput);
   })
 }
 
 
-function getGoogleEstimate(orignInput, destinationInput) {
+function getEstimates(orignInput, destinationInput) {
   $.ajax({
-    url: '/api/v1/env_variables.json',
+    url: '/api/v1/estimates',
     type: 'GET',
-    success: function(response) {
+    data: { origin: orignInput, destination: destinationInput },
+    success: function(response){
+      var google_data = response.google_estimate.estimate_info
+      var uber_data = response.uber_estimate.ride_estimates
+
+      googleEstimate(google_data)
+      uberEstimate(uber_data)
+
       console.log('SUCCESS', response);
     }, error: function(xhr) {
       console.log('NO', xhr);
@@ -43,32 +42,29 @@ function tripDirections(response){
   )
 }
 
-function googleEstimate(response){
-  console.log('in GoogleEstimate', response);
-
-  tripDirections(response)
-  var data = JSON.parse(response.responseText).google_estimate.estimate_info
+function googleEstimate(google_data){
+  console.log('in GoogleEstimate', google_data.departure_time.text);
+  // tripDirections(response)
   $('#bus-trips tbody').children().remove()
   $('#bus-trips tbody').append(
     "<tr>" +
     "<td>RTD Bus</td>" +
     "<td>Moneys</td>" +
-    "<td id='departure_time'>" + data.departure_time.text + "</td>" +
-    "<td id=''>" + data.arrival_time.text + "</td>" +
-    "<td>" + data.duration.text + "</td>" +
-    "<td>" + data.distance.text + "</td>" +
+    "<td id='departure_time'>" + google_data.departure_time.text + "</td>" +
+    "<td id=''>" + google_data.arrival_time.text + "</td>" +
+    "<td>" + google_data.duration.text + "</td>" +
+    "<td>" + google_data.distance.text + "</td>" +
     "<td>" + "<button type='button' class='btn btn-primary btn-sm' id='bus-trip-id'>" +
     "Take trip / Save info" +
     "</button>" + "</td>" +
     " </tr>")
 }
 
-function uberEstimate(response){
-  console.log('in UberEstimate', response);
-
-  var data = JSON.parse(response.responseText).uber_estimate.ride_estimates
+function uberEstimate(uber_data){
+  console.log('in UberEstimate', uber_data);
+  // debugger
   $('#uber-trips tbody').children().remove()
-    data.forEach(function(uber_trip) {
+    uber_data.forEach(function(uber_trip) {
       $('#uber-trips tbody').append(
       "<tr>" +
       "<td>" + uber_trip.table.localized_display_name + "</td>" +
@@ -86,3 +82,9 @@ function uberEstimate(response){
     )
   })
 }
+// retrive the from values to send as params
+// trigger an ajax call to the estimates controller
+// on success, get the data, pass the data to the googleEstimate function
+// on success, get the data, pass the data to the uberEstimate function
+// response.googleEstimate
+// debugger
