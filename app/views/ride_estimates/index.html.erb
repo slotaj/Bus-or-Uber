@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <h1>Enter info to get ride estimates from Uber and Mass Transit options</h1>
+    <h2>Enter info to get ride estimates from Uber and Mass Transit options</h2>
 </div>
 <div class="container-fluid">
   <div class="row text-center">
@@ -16,7 +16,7 @@
             <%= f.label :destination, "Destination" %>
             <%= f.text_field :destination %>
           </div>
-          <div class="col-sm-2 col-md-2 col-lg-2">
+          <div class="col-sm-2 col-md-2 col-lg-2" id="get-ride-submit">
             <%= f.submit "get ride estimates"%>
           </div>
         </div>
@@ -46,11 +46,11 @@
             <% if @google_estimate %>
               <tr id='bus-estimate-id'>
                 <td>RTD Bus</td>
-                <td>$?????</td>
+                <td>$2.60 - $5.20</td>
                 <td><%= @google_estimate.departure_time %></td>
                 <td><%= @google_estimate.arrival_time %></td>
-                <td><%= @google_estimate.duration %> minutes</td>
-                <td><%= @google_estimate.distance %> miles</td>
+                <td><%= @google_estimate.duration %></td>
+                <td><%= @google_estimate.distance %></td>
                 <td><button type='button' class='btn btn-primary btn-sm'>
                 <%= button_to 'Take trip / Save info',
                               {controller: 'user_trips',
@@ -110,7 +110,7 @@
           </table>
         </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="col-sm-4 col-md-4 col-lg-4" id="bus-trip-directions">
         <h3>Bus Itinerary</h3>
         <% if @google_estimate %>
         <p>Origin: <%= @google_estimate.start_address %></p>
