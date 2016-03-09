@@ -39,20 +39,20 @@ OmniAuth.config.mock_auth[:uber] = OmniAuth::AuthHash.new({
     c.hook_into :webmock
   end
 
-  RSpec.configure do |config|
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
-    config.use_transactional_fixtures = true
-    config.infer_spec_type_from_file_location!
-    config.filter_rails_from_backtrace!
-    config.include Capybara::DSL
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
-    end
+RSpec.configure do |config|
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
+  config.include Capybara::DSL
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
-    config.around(:each) do |example|
-      DatabaseCleaner.cleaning do
-        example.run
-      end
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
     end
+  end
 end

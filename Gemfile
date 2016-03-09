@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'rspec'
 gem 'geocoder'
+gem 'responders'
 
 group :production do
   gem 'rails_12factor'

@@ -5,22 +5,22 @@
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12" id='ride-info-input'>
       <div class="row">
-        <%= form_for :estimates, url: ride_estimates_path do |f| %>
-        <div class="col-sm-3 col-md-3 col-lg-3">
+        <%= form_for :estimates, url: api_v1_estimates_path, method: :get, id: 'get-estimate-button', remote: true do |f| %>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.label :origin, "Origin" %>
+            <%= f.text_field :origin %>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.label :destination, "Destination" %>
+            <%= f.text_field :destination %>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <%= f.submit "get ride estimates"%>
+          </div>
         </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.label :origin, "Origin" %>
-          <%= f.text_field :origin %>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.label :destination, "Destination" %>
-          <%= f.text_field :destination %>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <%= f.submit "get ride estimates"%>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
       <div class="col-sm-3 col-md-3 col-lg-3">
       </div>
     </div>
@@ -42,8 +42,8 @@
                 <td>Travel Distance</td>
               </tr>
             </thead>
-            <% if @google_estimate %>
             <tbody>
+            <% if @google_estimate %>
               <tr id='bus-estimate-id'>
                 <td>RTD Bus</td>
                 <td>$?????</td>
@@ -51,23 +51,23 @@
                 <td><%= @google_estimate.arrival_time %></td>
                 <td><%= @google_estimate.duration %> minutes</td>
                 <td><%= @google_estimate.distance %> miles</td>
-                <td><button type="button" class="btn btn-primary btn-sm">
-                <%= button_to "Take trip / Save info",
+                <td><button type='button' class='btn btn-primary btn-sm'>
+                <%= button_to 'Take trip / Save info',
                               {controller: 'user_trips',
                                    action: 'create',
-                           user_trip_info: { trip_type: "bus",
-                                        price_estimate: "$",
+                           user_trip_info: { trip_type: 'bus',
+                                        price_estimate: '$',
                                               duration: @google_estimate.duration,
                                               distance: @google_estimate.distance,
-                                            }}, class: "btn btn-primary btn-sm" %></button></td>
-                <% end %>
+                                            }}, class: 'btn btn-primary btn-sm' %></button></td>
               </tr>
             </tbody>
+            <% end %>
           </table>
         </div>
         <div class="row">
           <h1>Uber Estimates</h1>
-          <table class="table table-hover">
+          <table class="table table-hover" id="uber-trips">
             <thead>
               <tr>
                 <td>Uber Ride Type</td>
@@ -80,9 +80,9 @@
                 <td>Minimum Cost</td>
               </tr>
             </thead>
+            <tbody>
             <% if @uber_estimate %>
               <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
-                <tbody>
                   <tr id="<%=uber_estimate.localized_display_name%>-estimate-id" >
                     <td><%= uber_estimate.localized_display_name %></td>
                     <td><%= uber_estimate.estimate %></td>
@@ -104,9 +104,9 @@
                                                    low_estimate: uber_estimate.low_estimate
                                                 }}, class: "btn btn-primary btn-sm" %></button></td>
                   </tr>
-                </tbody>
               <% end %>
             <% end %>
+          </tbody>
           </table>
         </div>
       </div>
