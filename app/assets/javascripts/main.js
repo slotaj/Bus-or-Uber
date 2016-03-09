@@ -6,8 +6,15 @@ $(document).ready(function(){
   });
 });
 
+function tripDirections(response){
+  $('#bus-trip-directions').append(
+    var data = JSON.parse(response.responseText).google_estimate.estimate_info.
+
+  )
+}
 
 function googleEstimate(response){
+  tripDirections(response)
   var data = JSON.parse(response.responseText).google_estimate.estimate_info
   $('#bus-trips tbody').children().remove()
   $('#bus-trips tbody').append(
