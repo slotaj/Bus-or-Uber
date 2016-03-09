@@ -5,22 +5,16 @@
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12" id='ride-info-input'>
       <div class="row">
-        <%= form_for :estimates, url: api_v1_estimates_path, method: :get, id: 'get-estimate-button', remote: true do |f| %>
-          <div class="col-sm-3 col-md-3 col-lg-3">
-          </div>
-          <div class="col-sm-2 col-md-2 col-lg-2">
-            <%= f.label :origin, "Origin" %>
-            <%= f.text_field :origin %>
-          </div>
-          <div class="col-sm-2 col-md-2 col-lg-2">
-            <%= f.label :destination, "Destination" %>
-            <%= f.text_field :destination %>
-          </div>
-          <div class="col-sm-2 col-md-2 col-lg-2" id="get-ride-submit">
-            <%= f.submit "get ride estimates"%>
-          </div>
-        </div>
-        <% end %>
+        <label>Origin:</label>
+        <input type="text" id='origin-input'>
+        <label>Destination:</label>
+        <input type="text" id='destination-input'>
+        <button id='get-estimate-button'>Get Estimates</button>
+      </div>
+
+
+
+
       <div class="col-sm-3 col-md-3 col-lg-3">
       </div>
     </div>
@@ -92,7 +86,7 @@
                     <td><%= uber_estimate.high_estimate %></td>
                     <td><%= uber_estimate.low_estimate %></td>
                     <td><%= uber_estimate.minimum %></td>
-                    <td><button type="button" class="btn btn-default">
+                    <td>
                     <%= button_to "Take trip / Save info",
                                   {controller: 'user_trips',
                                        action: 'create',
@@ -102,7 +96,7 @@
                                                        distance: uber_estimate.distance,
                                                   high_estimate: uber_estimate.high_estimate,
                                                    low_estimate: uber_estimate.low_estimate
-                                                }}, class: "btn btn-primary btn-sm" %></button></td>
+                                                }}, class: "btn btn-primary btn-sm" %></td>
                   </tr>
               <% end %>
             <% end %>

@@ -1,10 +1,38 @@
 $(document).ready(function(){
-  $(document).ajaxSuccess(function(event, response, settings) {
-    console.log(response);
-    googleEstimate(response)
-    uberEstimate(response)
-  });
+  // googleEstimate(response);
+  // uberEstimate(response);
+  bindEvents()
 });
+
+function bindEvents(){
+  $('#get-estimate-button').on('click', function(){
+    var orignInput = $('#origin-input').val()
+    var destinationInput = $('#destination-input').val()
+    getGoogleEstimate(orignInput, destinationInput)
+    // retrive the from values to send as params
+    // trigger an ajax call to the estimates controller
+    // on success, get the data, pass the data to the googleEstimate function
+    // on success, get the data, pass the data to the uberEstimate function
+    // response.googleEstimate
+    debugger
+  })
+}
+
+
+function getGoogleEstimate(orignInput, destinationInput) {
+  $.ajax({
+    url: '/api/v1/env_variables.json',
+    type: 'GET',
+    success: function(response) {
+      console.log('SUCCESS', response);
+    }, error: function(xhr) {
+      console.log('NO', xhr);
+    }
+  })
+}
+
+
+
 
 function tripDirections(response){
   var data = JSON.parse(response.responseText).google_estimate.estimate_info
@@ -16,6 +44,8 @@ function tripDirections(response){
 }
 
 function googleEstimate(response){
+  console.log('in GoogleEstimate', response);
+
   tripDirections(response)
   var data = JSON.parse(response.responseText).google_estimate.estimate_info
   $('#bus-trips tbody').children().remove()
@@ -34,8 +64,9 @@ function googleEstimate(response){
 }
 
 function uberEstimate(response){
+  console.log('in UberEstimate', response);
+
   var data = JSON.parse(response.responseText).uber_estimate.ride_estimates
-  console.log(data)
   $('#uber-trips tbody').children().remove()
     data.forEach(function(uber_trip) {
       $('#uber-trips tbody').append(
