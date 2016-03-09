@@ -7,9 +7,11 @@ $(document).ready(function(){
 });
 
 function tripDirections(response){
+  var data = JSON.parse(response.responseText).google_estimate.estimate_info
+  $('#bus-trip-directions > p').remove()
   $('#bus-trip-directions').append(
-    var data = JSON.parse(response.responseText).google_estimate.estimate_info.
-
+    "<p><h3>Origin:</h3> " + data.start_address + "</p>" +
+    "<p><h3>Destination:</h3> " + data.end_address + "</p><br>"
   )
 }
 
@@ -27,13 +29,6 @@ function googleEstimate(response){
     "<td>" + data.distance.text + "</td>" +
     "<td>" + "<button type='button' class='btn btn-primary btn-sm' id='bus-trip-id'>" +
     "Take trip / Save info" +
-              //     {controller: 'user_trips',
-              //          action: 'create',
-              //  user_trip_info: { trip_type: 'bus',
-              //               price_estimate: '$',
-              //                     duration: @google_estimate.duration,
-              //                     distance: @google_estimate.distance}
-              //                   }}, class: 'btn btn-primary btn-sm' %>" +
     "</button>" + "</td>" +
     " </tr>")
 }

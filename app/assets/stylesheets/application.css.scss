@@ -15,11 +15,7 @@
  */
 
  body.welcome {
-  //  background-image: image-url("static-london.jpg");
    background-image: image-url("nice-shot.jpg");
-  //  background: url("http://a.fastcompany.net/multisite_files/fastcompany/imagecache/1280/poster/2014/09/3035870-poster-p-1-this-chaotic-rush-hour-intersection-is-a-masterpiece-of-video-editing.gif");
-  // background: url("http://i.imgur.com/XtAo98V.gif");
-  // background-image: url("http://49.media.tumblr.com/tumblr_ls7nhbfP1L1qjcjono1_500.gif");
    background-repeat: no-repeat;
    background-size: cover;
    background-attachment: fixed;
@@ -32,5 +28,8 @@
 
 .navbar.navbar-default {
   background-color: #100000;
-    // background-color: #384047;
+}
+
+#get-ride-submit{
+  margin-top: 22px;
 }
