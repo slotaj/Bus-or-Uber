@@ -13,10 +13,10 @@
     <tbody>
       <% @uber_trips.each do |trip| if @uber_trips %>
       <tr id="uber-trip">
-        <td><%= trip.cost %></td>
-        <td><%= trip.duration %></td>
-        <td><%= trip.distance %></td>
-        <td><%= trip.created_at %></td>
+        <td>$ <%= trip.cost %></td>
+        <td><%= trip.duration %> min</td>
+        <td><%= trip.distance %> mi</td>
+        <td><%= trip.created_at.strftime('%b %d %Y - %I:%M%p') %></td>
         <td><%= trip.trip_type %></td>
       </tr>
     </tbody>
