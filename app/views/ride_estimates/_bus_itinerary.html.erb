@@ -1,0 +1,14 @@
+<h3 class='text-center'>Bus Itinerary</h3>
+<% if @google_estimate %>
+<p>Origin: <%= @google_estimate.start_address %></p>
+<p>Destination: <%= @google_estimate.end_address %></p>
+<p>Steps: </p>
+  <% @google_estimate.steps.each do |step|%>
+    <p><%= step.html_instructions %></p>
+    <% if step.steps %>
+      <% step.steps.each do |step| %>
+        <p><%= step['travel_mode'] %>: Go <%= step['distance']['text'] %> for <%= step['duration']['text'] %> <%= step['html_instructions'].html_safe rescue "none found" %> <%= %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
