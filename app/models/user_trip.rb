@@ -2,7 +2,7 @@ class UserTrip < ActiveRecord::Base
   belongs_to :user
 
   def self.uber_trips
-    where('trip_type LIKE ?', "%uber%")
+    where('trip_type LIKE ?', "%ber%")
   end
 
   def self.uber_trips_total_cost
@@ -18,7 +18,7 @@ class UserTrip < ActiveRecord::Base
   end
 
   def self.bus_trips
-    where('trip_type LIKE ?', "%bus%")
+    where('trip_type LIKE ?', "%us%")
   end
 
   def self.bus_trips_total_cost
