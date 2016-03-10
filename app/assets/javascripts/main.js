@@ -1,6 +1,6 @@
 $(document).ready(function(){
   bindEvents();
-  // saveUberTrip();
+  saveUberTrip();
   saveGoogleTrip();
   collapseTable('#uber-trip-table')
   collapseTable('#bus-trip-table')
