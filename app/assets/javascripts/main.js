@@ -2,10 +2,9 @@ $(document).ready(function(){
   bindEvents();
   saveUberTrip();
   saveGoogleTrip();
-  collapseTable('#uber-trip-table')
-  collapseTable('#bus-trip-table')
+  collapseTable('#uber-trip-table');
+  collapseTable('#bus-trip-table');
 });
-
 
 function collapseTable(id) {
    $(id).on('click', function() {
@@ -18,7 +17,8 @@ function bindEvents(){
     var orignInput = $('#origin-input').val();
     var destinationInput = $('#destination-input').val();
     getEstimates(orignInput, destinationInput);
-  })
+    $('#loading').removeClass('hide')
+  });
 }
 
 function getEstimates(orignInput, destinationInput) {
@@ -34,7 +34,9 @@ function getEstimates(orignInput, destinationInput) {
       uberEstimate(uber_data)
       saveGoogleTrip();
       saveUberTrip();
+      $('#loading').addClass('hide');
     }, error: function(xhr) {
+      $('#loading').addClass('hide');
     }
   })
 }
@@ -55,7 +57,6 @@ function saveGoogleTrip(){
      type: 'POST',
      data: postParams,
      dataType: null,
-    //  debugger
      success: function(response){
        alert("Trip Saved");
      },
