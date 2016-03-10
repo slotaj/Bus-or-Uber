@@ -1,19 +1,21 @@
-class UserTripsController < ApplicationController
+class Api::V1::UserTripsController < Api::ApiController
+  respond_to
+
   def create
+    byebug
     user_trip = UserTrip.new(convert_params)
     user_trip.user_id = current_user.id
-# byebug
     if user_trip.save
-      flash[:notice] = "Your trip was successfully saved"
+      respond_with ""
     else
-      flash[:error] = "Opps, something went wrong"
     end
-    redirect_to ride_estimates_path
   end
 
   private
 
   def convert_params
+####these are the params
+# {"trip_type"=>"RTD Bus", "price_estimate"=>"$5.20", "duration"=>"2303", "distance"=>"4.4 mi"}
     attributes = user_trip_params.to_h
     if attributes['high_estimate']
       low = attributes['low_estimate'].to_i
@@ -22,10 +24,11 @@ class UserTripsController < ApplicationController
     else
       attributes.merge!('cost' => attributes['price_estimate'][1..-1].to_f)
     end
+    attributes.delete('price_estimate')
     attributes.delete('high_estimate')
     attributes.delete('low_estimate')
-    attributes['duration'] = attributes['duration'].to_i
-    attributes['distance'] = attributes['distance'].to_i
+    attributes['duration'] = attributes['duration'].to_i / 60
+    attributes['distance'] = attributes['distance'][0..2].to_i
     attributes
   end
 

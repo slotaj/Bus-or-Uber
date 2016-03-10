@@ -2,24 +2,25 @@
   <div class="row">
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Uber Trips</h1>
+      <a class="btn platform-admin-tables" id='uber-trip-table'>Hide / Display</a>
       <table class="table table-hover">
           <thead class="thead-default">
             <tr>
-              <td>Uber Car</td>
               <td>Trip Cost</td>
-              <td>Day/Time</td>
               <td>Travel Time</td>
               <td>Distance Traveled</td>
+              <td>Day/Time</td>
+              <td>Uber Car</td>
             </tr>
           </thead>
           <tbody>
             <% @uber_trips.each do |trip| if @uber_trips %>
             <tr id="uber-trip">
-              <td><%= trip.trip_type %></td>
               <td><%= trip.cost %></td>
-              <td><%= trip.created_at %></td>
               <td><%= trip.duration %></td>
               <td><%= trip.distance %></td>
+              <td><%= trip.created_at %></td>
+              <td><%= trip.trip_type %></td>
             </tr>
           </tbody>
           <% end %>
@@ -61,22 +62,23 @@
   <div class="row">
     <div class="col-sm-8 col-md-8 col-lg-8">
       <h1>Bus Trips</h1>
+      <a class="btn platform-admin-tables" id='bus-trip-table'>Hide / Display</a>
       <table class="table table-hover">
           <thead class="thead-default">
             <tr>
-              <td>Day/Time</td>
-              <td>Distance Traveled</td>
-              <td>Travel Time</td>
               <td>Trip Cost</td>
+              <td>Travel Time</td>
+              <td>Distance Traveled</td>
+              <td>Day/Time</td>
             </tr>
           </thead>
           <% @bus_trips.each do |trip| if @bus_trips %>
           <tbody>
             <tr id="bus-trip">
-              <td><%= trip.created_at %></td>
-              <td><%= trip.distance %></td>
-              <td><%= trip.duration %></td>
               <td><%= trip.cost %></td>
+              <td><%= trip.duration %></td>
+              <td><%= trip.distance %></td>
+              <td><%= trip.created_at %></td>
             </tr>
           </tbody>
           <% end %>
