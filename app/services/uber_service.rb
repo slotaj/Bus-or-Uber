@@ -14,17 +14,18 @@ class UberService
     time_estimate_response  = time_estimate(start_lat, start_lng)
     price_estimate_response = price_estimate(start_lat, start_lng, end_lat, end_lng)
 
-    combine_and_format_responses(time_estimate_response, price_estimate_response)
+    uber_arrival = time_estimate_response.times[0]['estimate']
+    price_estimate_response.prices[0].merge!('uber_arrival' => (time_estimate_response.times[0]['estimate'] / 60))
   end
 
-  def combine_and_format_responses(time_estimate_response, price_estimate_response)
-    price_estimate_response = price_estimate_response.prices.map.with_index do |price_estimate, i|
-      trip_duration = time_estimate_response.times[i]['estimate']
-      price_estimate['duration'] = price_estimate['duration'] / 60
-      price_estimate.merge!('estimated_uber_arrival' => trip_duration / 60)
-      build_object(price_estimate)
-    end
-  end
+  # def combine_and_format_responses(time_estimate_response, price_estimate_response)
+  #   price_estimate_response = price_estimate_response.prices.map.with_index do |price_estimate, i|
+  #     trip_duration = time_estimate_response.times[i]['estimate']
+  #     price_estimate['duration'] = price_estimate['duration'] / 60
+  #     price_estimate.merge!('estimated_uber_arrival' => trip_duration / 60)
+  #     build_object(price_estimate)
+  #   end
+  # end
 
   def time_estimate(start_lat, start_lng)
     response = connection.get do |req|
