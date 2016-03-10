@@ -15,7 +15,7 @@
   <tbody>
   <% if @uber_estimate %>
     <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
-        <tr class="<%=uber_estimate.localized_display_name%>-estimate-id" >
+        <tr>
           <td class="u-ride-type"><%= uber_estimate.localized_display_name %></td>
           <td class="u-ride-estimate"><%= uber_estimate.estimate %></td>
           <td class="u-ride-uber-arrival"><%= uber_estimate.estimated_uber_arrival %></td>
