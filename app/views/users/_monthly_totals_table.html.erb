@@ -12,17 +12,17 @@
     <% if @uber_trips %>
       <tr>
         <td>Uber</td>
-        <td><%= @uber_trips.uber_trips_total_cost %></td>
-        <td><%= @uber_trips.uber_trips_total_duration %></td>
-        <td><%= @uber_trips.uber_trips_total_distance %></td>
+        <td>$ <%= @uber_trips.uber_trips_total_cost %></td>
+        <td><%= distance_of_time_in_words(@uber_trips.uber_trips_total_duration * 60) %></td>
+        <td><%= @uber_trips.uber_trips_total_distance %> mi</td>
       </tr>
     <% end %>
     <% if @bus_trips %>
       <tr>
         <td>Bus</td>
-        <td><%= @bus_trips.bus_trips_total_cost %></td>
-        <td><%= @bus_trips.bus_trips_total_duration %></td>
-        <td><%= @bus_trips.bus_trips_total_distance %></td>
+        <td>$ <%= @bus_trips.bus_trips_total_cost %></td>
+        <td><%= distance_of_time_in_words(@bus_trips.bus_trips_total_duration * 60) %></td>
+        <td><%= @bus_trips.bus_trips_total_distance %> mi</td>
       </tr>
     <% end %>
   </tbody>
