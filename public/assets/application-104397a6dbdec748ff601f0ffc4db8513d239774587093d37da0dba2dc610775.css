@@ -36,3 +36,8 @@ body.welcome {
 #get-ride-submit {
   margin-top: 22px;
 }
+
+/* line 38, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+.hidden {
+  display: none;
+}
