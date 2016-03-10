@@ -11,15 +11,16 @@
     </tr>
   </thead>
   <tbody>
+
   <% if @google_estimate %>
     <tr id='bus-estimate-id'>
-      <td id="g-ride-type">RTD Bus</td>
-      <td id="g-ride-cost">5.20</td>
-      <td id="g-ride-departure"><%= @google_estimate.departure_time %></td>
-      <td id="g-ride-arrival"><%= @google_estimate.arrival_time %></td>
-      <td id="g-ride-duration"><%= @google_estimate.duration %></td>
-      <td id="g-ride-distance"><%= @google_estimate.distance %></td>
-      <td><button id='save-google-trip' class='btn btn-primary btn-sm'>Take trip / Save trip</button></td>
+      <td class="g-ride-type">RTD Bus</td>
+      <td class="g-ride-cost">$5.20</td>
+      <td class="g-ride-departure"><%= @google_estimate.departure_time %></td>
+      <td class="g-ride-arrival"><%= @google_estimate.arrival_time %></td>
+      <td class="g-ride-duration"><%= @google_estimate.duration %></td>
+      <td class="g-ride-distance"><%= @google_estimate.distance %></td>
+      <td id='save-google-trip'><button type='button' class='btn btn-primary btn-sm'>Take trip / Save trip</button></td>
     </tr>
   </tbody>
   <% end %>

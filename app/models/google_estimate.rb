@@ -28,6 +28,10 @@ class GoogleEstimate
     estimate_info['duration']['text']
   end
 
+  def duration_data
+    estimate_info['duration']['value']
+  end
+
   def start_address
     estimate_info['start_address']
   end
