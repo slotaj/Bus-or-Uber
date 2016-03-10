@@ -2,7 +2,6 @@ class Api::V1::UserTripsController < Api::ApiController
   respond_to
 
   def create
-    byebug
     user_trip = UserTrip.new(convert_params)
     user_trip.user_id = current_user.id
     if user_trip.save

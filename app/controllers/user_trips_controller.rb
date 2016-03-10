@@ -2,7 +2,6 @@ class UserTripsController < ApplicationController
   def create
     user_trip = UserTrip.new(convert_params)
     user_trip.user_id = current_user.id
-# byebug
     if user_trip.save
       flash[:notice] = "Your trip was successfully saved"
     else

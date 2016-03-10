@@ -10,7 +10,6 @@ class GoogleEstimate
   def self.create(origin, destination)
     estimate_hash = GoogleEstimateService.new.full(origin, destination)
     @estimate     = new(estimate_hash)
-    # byebug
   end
 
   def self.estimate
