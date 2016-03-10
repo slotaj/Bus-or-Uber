@@ -1,0 +1,29 @@
+<h2>Monthly Totals</h2>
+<table class="table table-hover" id="monthly-totals">
+  <thead>
+    <tr>
+      <td>Ride Type</td>
+      <td>Money Spent</td>
+      <td>Time Spent</td>
+      <td>Total Distance Travleled</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @uber_trips %>
+      <tr>
+        <td>Uber</td>
+        <td><%= @uber_trips.uber_trips_total_cost %></td>
+        <td><%= @uber_trips.uber_trips_total_duration %></td>
+        <td><%= @uber_trips.uber_trips_total_distance %></td>
+      </tr>
+    <% end %>
+    <% if @bus_trips %>
+      <tr>
+        <td>Bus</td>
+        <td><%= @bus_trips.bus_trips_total_cost %></td>
+        <td><%= @bus_trips.bus_trips_total_duration %></td>
+        <td><%= @bus_trips.bus_trips_total_distance %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

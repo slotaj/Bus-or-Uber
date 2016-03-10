@@ -1,0 +1,25 @@
+<h1>Uber Trips</h1>
+<a class="btn platform-admin-tables" id='uber-trip-table'>Hide / Display</a>
+<table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <td>Trip Cost</td>
+        <td>Travel Time</td>
+        <td>Distance Traveled</td>
+        <td>Day/Time</td>
+        <td>Uber Car</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @uber_trips.each do |trip| if @uber_trips %>
+      <tr id="uber-trip">
+        <td><%= trip.cost %></td>
+        <td><%= trip.duration %></td>
+        <td><%= trip.distance %></td>
+        <td><%= trip.created_at %></td>
+        <td><%= trip.trip_type %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  <% end %>
+</table>

@@ -1,0 +1,33 @@
+<h1>Uber Estimates</h1>
+<table class="table table-hover" id="uber-trips">
+  <thead>
+    <tr>
+      <td>Uber Ride Type</td>
+      <td>Estimate Cost</td>
+      <td>Estimated Uber Arrival</td>
+      <td>Estimate Travel Time</td>
+      <td>Travel Distance</td>
+      <td>High Estimate</td>
+      <td>Low Estimate</td>
+      <td>Minimum Cost</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @uber_estimate %>
+    <% @uber_estimate.ride_estimates.each do |uber_estimate| %>
+        <tr id="<%=uber_estimate.localized_display_name%>-estimate-id" >
+          <td id="u-ride-type"><%= uber_estimate.localized_display_name %></td>
+          <td id="u-ride-estimate"><%= uber_estimate.estimate %></td>
+          <td id="u-ride-uber-arrival"><%= uber_estimate.estimated_uber_arrival %></td>
+          <td id="u-ride-duration"><%= uber_estimate.duration %> minutes</td>
+          <td id="u-ride-distance"><%= uber_estimate.distance %> miles</td>
+          <td id="u-ride-high-estimate"><%= uber_estimate.high_estimate %></td>
+          <td id="u-ride-low-estimate"><%= uber_estimate.low_estimate %></td>
+          <td id="u-ride-minimum"><%= uber_estimate.minimum %></td>
+          <td><button id='save-uber-trip' class='btn btn-primary btn-sm'>Take trip / Save trip</button></td>
+          <td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
