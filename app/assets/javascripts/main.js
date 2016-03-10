@@ -25,9 +25,7 @@ function saveGoogleTrip(){
    event.preventDefault()
    var trip_type      = $('#g-ride-type').text()
    var price_estimate = $('#g-ride-cost').text()
-  //  var duration       = $('#g-ride-duration').text()
    var duration       = $('#g-ride-duration').attr('class')
-   debugger
    var distance       = $('#g-ride-distance').text()
    var postParams = { trip_type: trip_type,
            price_estimate: price_estimate,
@@ -37,11 +35,14 @@ function saveGoogleTrip(){
      url: '/api/v1/user_trips',
      type: 'POST',
      data: postParams,
+     dataType: null,
+    //  debugger
      success: function(response){
-       console.log('google trip saved', response)
+       alert("Trip Saved");
      },
      error: function(xhr) {
-      console.log("noonono", xhr.responseText)
+       alert("Uh Oh, Something went wrong")
+       console.log(xhr.responseText)
     }
    })
  })
@@ -66,13 +67,12 @@ function saveUberTrip(){
      type: 'POST',
      data: postParams,
      success: function(response){
-       console.log("uber trip saved", response)
+       alert("Trip Saved");
      },
      error: function(xhr) {
-      console.log(xhr.responseText)
+       alert("Ayy ayy eye")
     }
    })
-  //  debugger
  })
 }
 

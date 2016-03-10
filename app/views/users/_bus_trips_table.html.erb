@@ -15,7 +15,7 @@
         <td>$ <%= trip.cost %></td>
         <td><%= trip.duration %> min</td>
         <td><%= trip.distance %> mi</td>
-        <td><%= trip.created_at.strftime('%b %d %Y - %I:%M%p') %></td>
+        <td><%= trip.created_at.localtime.strftime('%b %d %Y - %I:%M%p') %></td>
       </tr>
     </tbody>
     <% end %>

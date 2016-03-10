@@ -48,24 +48,6 @@ class UberService
     build_object(parse(response))
   end
 
-  # def sanitize_ride_estimates(ride_estimates) # this is crutial!!!! this method goes into the hash and the 'prices' key to get the right info
-  #   ride_estimates.prices.map do |ride|
-  #     ride['duration'] = trip_duration(ride['duration'])
-  #     build_object(ride)
-  #   end
-  # end
-  #
-  # def sanitize_arrival_estimates(uber_arrival_estimates)
-  #   uber_arrival_estimates.map do |uber_estimate|
-  #     uber_estimate['estimate'] = trip_duration(uber_estimate['estimate'])
-  #     build_object(estimate)
-  #   end
-  # end
-  #
-  # def trip_duration(time)
-  #   distance_of_time_in_words(Time.now, Time.now + time)
-  # end
-
   private
 
   def parse(response)

@@ -5,7 +5,7 @@ class Api::V1::UserTripsController < Api::ApiController
     user_trip = UserTrip.new(convert_params)
     user_trip.user_id = current_user.id
     if user_trip.save
-      respond_with ""
+      respond_with "".to_json
     else
     end
   end
@@ -13,8 +13,6 @@ class Api::V1::UserTripsController < Api::ApiController
   private
 
   def convert_params
-####these are the params
-# {"trip_type"=>"RTD Bus", "price_estimate"=>"$5.20", "duration"=>"2303", "distance"=>"4.4 mi"}
     attributes = user_trip_params.to_h
     if attributes['high_estimate']
       low = attributes['low_estimate'].to_i
