@@ -11563,10 +11563,10 @@ return jQuery;
 $(document).ready(function(){
   bindEvents();
   saveUberTrip();
-  collapseTable('#uber-trip-table')
-  collapseTable('#bus-trip-table')
+  saveGoogleTrip();
+  collapseTable('#uber-trip-table');
+  collapseTable('#bus-trip-table');
 });
-
 
 function collapseTable(id) {
    $(id).on('click', function() {
@@ -11579,6 +11579,27 @@ function bindEvents(){
     var orignInput = $('#origin-input').val();
     var destinationInput = $('#destination-input').val();
     getEstimates(orignInput, destinationInput);
+    $('#loading').removeClass('hide')
+  });
+}
+
+function getEstimates(orignInput, destinationInput) {
+  $.ajax({
+    url: '/api/v1/estimates',
+    type: 'GET',
+    data: { origin: orignInput, destination: destinationInput },
+    success: function(response){
+      var google_data = response.google_estimate.estimate_info
+      var uber_data = response.uber_estimate.ride_estimates
+
+      googleEstimate(google_data)
+      uberEstimate(uber_data)
+      saveGoogleTrip();
+      saveUberTrip();
+      $('#loading').addClass('hide');
+    }, error: function(xhr) {
+      $('#loading').addClass('hide');
+    }
   })
 }
 
@@ -11587,9 +11608,7 @@ function saveGoogleTrip(){
    event.preventDefault()
    var trip_type      = $('#g-ride-type').text()
    var price_estimate = $('#g-ride-cost').text()
-  //  var duration       = $('#g-ride-duration').text()
    var duration       = $('#g-ride-duration').attr('class')
-   debugger
    var distance       = $('#g-ride-distance').text()
    var postParams = { trip_type: trip_type,
            price_estimate: price_estimate,
@@ -11599,11 +11618,13 @@ function saveGoogleTrip(){
      url: '/api/v1/user_trips',
      type: 'POST',
      data: postParams,
+     dataType: null,
      success: function(response){
-       console.log('google trip saved', response)
+       alert("Trip Saved");
      },
      error: function(xhr) {
-      console.log("noonono", xhr.responseText)
+       alert("Uh Oh, Something went wrong")
+       console.log(xhr.responseText)
     }
    })
  })
@@ -11628,33 +11649,14 @@ function saveUberTrip(){
      type: 'POST',
      data: postParams,
      success: function(response){
-       console.log("uber trip saved", response)
+       alert("Trip Saved");
      },
      error: function(xhr) {
-      console.log(xhr.responseText)
+       alert("Ayy ayy eye")
     }
    })
-  //  debugger
  })
 }
-
-function getEstimates(orignInput, destinationInput) {
-  $.ajax({
-    url: '/api/v1/estimates',
-    type: 'GET',
-    data: { origin: orignInput, destination: destinationInput },
-    success: function(response){
-      var google_data = response.google_estimate.estimate_info
-      var uber_data = response.uber_estimate.ride_estimates
-
-      googleEstimate(google_data)
-      uberEstimate(uber_data)
-      saveGoogleTrip();
-    }, error: function(xhr) {
-    }
-  })
-}
-
 
 function googleEstimate(google_data){
   tripDirections(google_data)
