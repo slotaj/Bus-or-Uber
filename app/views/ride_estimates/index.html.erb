@@ -1,6 +1,6 @@
 <div class="container text-center">
   <h2>Enter info to get ride estimates from Uber and Mass Transit options</h2>
-  <h5>(This app only gets Transit rides, please only enter trip destiantions the RTd system can complete)</h5>
+  <h5>(This app only gets local transit rides, please only enter trip destiantions the RTd system can complete)</h5>
 </div>
 <div class="container-fluid">
   <div class="row text-center">
@@ -19,8 +19,8 @@
 
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-      <div class="col-sm-8 col-md-8 col-lg-8">
 
+      <div class="col-sm-8 col-md-8 col-lg-8">
         <div class="row">
           <%= render partial: 'bus_estimates_table' %>
         </div>
@@ -28,11 +28,12 @@
         <div class="row">
           <%= render partial: 'uber_estimates_table' %>
         </div>
-
       </div>
+
       <div class="col-sm-4 col-md-4 col-lg-4" id="bus-trip-directions">
         <%= render partial: 'bus_itinerary' %>
       </div>
+
     </div>
   </div>
 </div>
