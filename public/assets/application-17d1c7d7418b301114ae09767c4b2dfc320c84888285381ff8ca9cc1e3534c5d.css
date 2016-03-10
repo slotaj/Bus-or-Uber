@@ -41,3 +41,14 @@ body.welcome {
 .hidden {
   display: none;
 }
+
+/* line 42, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+#big-row {
+  margin-top: 35px;
+}
+
+/* line 46, /Users/justinpease/Turing_All/Module_3.2/projects/Bus-or-Uber/app/assets/stylesheets/application.css.scss */
+#instructions {
+  margin-top: 15px;
+  margin-bottom: 45px;
+}

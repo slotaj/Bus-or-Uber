@@ -11606,10 +11606,10 @@ function getEstimates(orignInput, destinationInput) {
 function saveGoogleTrip(){
  $('#save-google-trip').on('click', function(event){
    event.preventDefault()
-   var trip_type      = $('#g-ride-type').text()
-   var price_estimate = $('#g-ride-cost').text()
-   var duration       = $('#g-ride-duration').attr('class')
-   var distance       = $('#g-ride-distance').text()
+   var trip_type      = $('.g-ride-type').text()
+   var price_estimate = $('.g-ride-cost').text()
+   var duration       = $('.g-ride-duration').attr('class')
+   var distance       = $('.g-ride-distance').text()
    var postParams = { trip_type: trip_type,
            price_estimate: price_estimate,
            duration: duration,
@@ -11631,19 +11631,20 @@ function saveGoogleTrip(){
 }
 
 function saveUberTrip(){
- $('#save-uber-trip').on('click', function(){
-   var trip_type      = $('#u-ride-type').text()
-   var price_estimate = $('#u-ride-estimate').text()
-   var duration       = $('#u-ride-duration').text()
-   var distance       = $('#u-ride-distance').text()
-   var high_estimate  = $('u-ride-high-estimate').text()
-   var low_estimate   = $('u-ride-low-estimate').text()
+ $('.save-uber-trip').on('click', function(){
+   var trip_type      = $(this).siblings('.u-ride-type').text()
+   var price_estimate = $(this).siblings('.u-ride-estimate').text()
+   var duration       = $(this).siblings('.u-ride-duration').text()
+   var distance       = $(this).siblings('.u-ride-distance').text()
+   var high_estimate  = $(this).siblings('.u-ride-high-estimate').text()
+   var low_estimate   = $(this).siblings('.u-ride-low-estimate').text()
    var postParams = { trip_type: trip_type,
                  price_estimate: price_estimate,
                        duration: duration,
                        distance: distance,
                   high_estimate: high_estimate,
                    low_estimate: low_estimate }
+   $(this).parent().siblings().toggleClass('hidden')
    $.ajax({
      url: '/user_trips',
      type: 'POST',
@@ -11663,13 +11664,13 @@ function googleEstimate(google_data){
   $('#bus-trips tbody').children().remove()
   $('#bus-trips tbody').append(
     "<tr>" +
-    "<td id='g-ride-type'>RTD Bus</td>" +
-    "<td id='g-ride-cost'>$5.20</td>" +
-    "<td id='g-ride-departure'>" + google_data.departure_time.text + "</td>" +
-    "<td id='g-ride-arrival'>" + google_data.arrival_time.text + "</td>" +
-    "<td id='g-ride-duration' class='" + google_data.duration.value + "'>" + google_data.duration.text + "</td>" +
-    "<td id='g-ride-distance'>" + google_data.distance.text + "</td>" +
-    "<td>" + "<button type='button' class='btn btn-primary btn-sm' id='save-google-trip'>" +
+    "<td class='g-ride-type'>RTD Bus</td>" +
+    "<td class='g-ride-cost'>$5.20</td>" +
+    "<td class='g-ride-departure'>" + google_data.departure_time.text + "</td>" +
+    "<td class='g-ride-arrival'>" + google_data.arrival_time.text + "</td>" +
+    "<td class='g-ride-duration' class='" + google_data.duration.value + "'>" + google_data.duration.text + "</td>" +
+    "<td class='g-ride-distance'>" + google_data.distance.text + "</td>" +
+    "<td class='save-google-trip'>" + "<button type='button' class='btn btn-primary btn-sm'>" +
     "Take trip / Save info" +
     "</button>" + "</td>" +
     " </tr>")
@@ -11680,15 +11681,15 @@ function uberEstimate(uber_data){
     uber_data.forEach(function(uber_trip) {
       $('#uber-trips tbody').append(
       "<tr>" +
-      "<td>" + uber_trip.table.localized_display_name + "</td>" +
-      "<td>" + uber_trip.table.estimate + "</td>" +
+      "<td class='u-ride-type'>" + uber_trip.table.localized_display_name + "</td>" +
+      "<td class='u-ride-estimate'>" + uber_trip.table.estimate + "</td>" +
       "<td>" + uber_trip.table.estimated_uber_arrival + "</td>" +
-      "<td>" + uber_trip.table.duration + "</td>" +
-      "<td>" + uber_trip.table.distance + "</td>" +
-      "<td>" + uber_trip.table.high_estimate + "</td>" +
-      "<td>" + uber_trip.table.low_estimate + "</td>" +
+      "<td class='u-ride-duration'>" + uber_trip.table.duration + "</td>" +
+      "<td class='u-ride-distance'>" + uber_trip.table.distance + "</td>" +
+      "<td class='u-ride-high-estimate'>" + uber_trip.table.high_estimate + "</td>" +
+      "<td class='u-ride-low-estimate'>" + uber_trip.table.low_estimate + "</td>" +
       "<td>" + uber_trip.table.minimum + "</td>" +
-      "<td>" + "<button type='button' class='btn btn-primary btn-sm' id='save-uber-trip'>" +
+      "<td class='save-uber-trip'>" + "<button type='button' class='btn btn-primary btn-sm'>" +
       "Take trip / Save info" +
       "</button>" + "</td>" +
       "</tr>"
