@@ -1,89 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8 col-md-8 col-lg-8">
-      <h1>Uber Trips</h1>
-      <a class="btn platform-admin-tables" id='uber-trip-table'>Hide / Display</a>
-      <table class="table table-hover">
-          <thead class="thead-default">
-            <tr>
-              <td>Trip Cost</td>
-              <td>Travel Time</td>
-              <td>Distance Traveled</td>
-              <td>Day/Time</td>
-              <td>Uber Car</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @uber_trips.each do |trip| if @uber_trips %>
-            <tr id="uber-trip">
-              <td><%= trip.cost %></td>
-              <td><%= trip.duration %></td>
-              <td><%= trip.distance %></td>
-              <td><%= trip.created_at %></td>
-              <td><%= trip.trip_type %></td>
-            </tr>
-          </tbody>
-          <% end %>
-        <% end %>
-      </table>
+    <%= render partial: 'uber_trips_table' %>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
-      <h2>Monthly Totals</h2>
-      <table class="table table-hover" id="monthly-totals">
-        <thead>
-          <tr>
-            <td>Ride Type</td>
-            <td>Money Spent</td>
-            <td>Time Spent</td>
-            <td>Total Distance Travleled</td>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @uber_trips %>
-            <tr>
-              <td>Uber</td>
-              <td><%= @uber_trips.uber_trips_total_cost %></td>
-              <td><%= @uber_trips.uber_trips_total_duration %></td>
-              <td><%= @uber_trips.uber_trips_total_distance %></td>
-            </tr>
-          <% end %>
-          <% if @bus_trips %>
-            <tr>
-              <td>Bus</td>
-              <td><%= @bus_trips.bus_trips_total_cost %></td>
-              <td><%= @bus_trips.bus_trips_total_duration %></td>
-              <td><%= @bus_trips.bus_trips_total_distance %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render partial: 'monthly_totals_table' %>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-8 col-md-8 col-lg-8">
-      <h1>Bus Trips</h1>
-      <a class="btn platform-admin-tables" id='bus-trip-table'>Hide / Display</a>
-      <table class="table table-hover">
-          <thead class="thead-default">
-            <tr>
-              <td>Trip Cost</td>
-              <td>Travel Time</td>
-              <td>Distance Traveled</td>
-              <td>Day/Time</td>
-            </tr>
-          </thead>
-          <% @bus_trips.each do |trip| if @bus_trips %>
-          <tbody>
-            <tr id="bus-trip">
-              <td><%= trip.cost %></td>
-              <td><%= trip.duration %></td>
-              <td><%= trip.distance %></td>
-              <td><%= trip.created_at %></td>
-            </tr>
-          </tbody>
-          <% end %>
-        <% end %>
-      </table>
+      <%= render partial: 'bus_trips_table'%>
     </div>
   </div>
 </div>

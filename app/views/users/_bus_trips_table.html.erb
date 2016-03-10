@@ -1,0 +1,23 @@
+<h1>Bus Trips</h1>
+<a class="btn platform-admin-tables" id='bus-trip-table'>Hide / Display</a>
+<table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <td>Trip Cost</td>
+        <td>Travel Time</td>
+        <td>Distance Traveled</td>
+        <td>Day/Time</td>
+      </tr>
+    </thead>
+    <% @bus_trips.each do |trip| if @bus_trips %>
+    <tbody>
+      <tr id="bus-trip">
+        <td><%= trip.cost %></td>
+        <td><%= trip.duration %></td>
+        <td><%= trip.distance %></td>
+        <td><%= trip.created_at %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  <% end %>
+</table>

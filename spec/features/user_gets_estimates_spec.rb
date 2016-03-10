@@ -8,9 +8,9 @@ RSpec.describe "user gets ride estimes", type: :feature do
       expect(current_path).to eq(ride_estimates_path)
       VCR.use_cassette("estimate1") do
         within('#ride-info-input') do
-          fill_in("estimates[origin]", with: "1510 Blake Street, Denver Colorado 80202")
-          fill_in("estimates[destination]", with: "Denver Zoo")
-          click_on "get ride estimates"
+          fill_in("origin-input", with: "1510 Blake Street, Denver Colorado 80202")
+          fill_in("destination-input", with: "Denver Zoo")
+          click_on "Get Estimates"
         end
         expect(page).to have_content("uberX")
       end
