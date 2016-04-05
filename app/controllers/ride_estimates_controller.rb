@@ -14,6 +14,7 @@ class RideEstimatesController < ApplicationController
     end_lng    = google_estimate.estimate_info['end_location']['lng']
     UberEstimate.create(start_lat, start_lng, end_lat, end_lng)
     redirect_to action: 'index'
+    
   end
 
   private
